@@ -36,4 +36,7 @@ Aside from just being more pleasing to the eye, shortened URLs can have the foll
 - The short link should have a lifetime that the user specifies on creation
 - The short link should track clicks count
 ### Non-functional
-
+- The service should be able to handle numerous requests
+- Forwarding should be real-time with minimum delay
+- The short link should be random in order not to be predictable
+- 
