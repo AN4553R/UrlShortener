@@ -54,7 +54,7 @@ And 10 redirects every second:
 Let’s say we store each address for a maximum - 1 year. Since we expect 500k new link every month, then we will have near 6 million records in the database: 
 `500k record/month * 12 months = 6 million`
 
-Let’s assume that each record in the database - approximately 1000 bytes. The recommended maximum size for a link is 2000 characters and according to the standard, the URL encodes with ASCII characters, which occupy 1 byte, i.e. the link can hold  2000 bytes by recommended maximum size). So we will use half of this value as average. Then we need 6 TB of memory to store records for 1 year: 
+Let’s assume that each record in the database - approximately 1000 bytes. [The recommended maximum size for a link is 2000 characters](https://stackoverflow.com/questions/417142/what-is-the-maximum-length-of-a-url-in-different-browsers/417184#417184) and according to the standard, the URL encodes with ASCII characters, which occupy 1 byte, i.e. the link can hold  2000 bytes by recommended maximum size). So we will use half of this value as average. Then we need 6 TB of memory to store records for 1 year: 
 
 `6 million record * 1000 bytes per record = 6 GB`
 
@@ -62,3 +62,17 @@ Let’s assume that each record in the database - approximately 1000 bytes. The 
 >- We need to store several million records
 >- Each record is small 
 >- The service is very read-heavy
+
+## Technology stack 
+This service should store relatively small amounts of data, no need to store relations between different data models, and redirections should be processed as quickly as possible, we will use Redis with Goland.
+## Overview
+Generating unique URL using randomization and Base62 encoding
+### Data model information
+- Id integer 
+- Original string 
+- Expiration date 
+- Visits integer
+### We will have 3 endpoints: 
+- Create a new short link 
+- Redirect to the origin URL on passing a short link 
+- Get general information about the short link
