@@ -1,15 +1,8 @@
 # URL Shortening Service (URLSS)
-> A super fast URL shortener service written in Go.
+> A super fast URL shortener service.
 
 ## Motivation
 This app takes a long URL and shrinks it down to fewer characters.
-
-### Insight
-Input: `https://www.example.co.uk:443/blog/article/search?docid=720&hl=en#dayone`
-
-Output: `http://localhost:8080/ZNkw23qpiss`
-
-
 ### Benefits
 Aside from just being more pleasing to the eye, shortened URLs can have the following added benefits:
 
@@ -64,7 +57,8 @@ Let’s assume that each record in the database - approximately 1000 bytes. [The
 >- The service is very read-heavy
 
 ## Technology stack 
-This service should store relatively small amounts of data, no need to store relations between different data models, and redirections should be processed as quickly as possible, we will use Redis with Goland.
+- This service should store relatively small amounts of data, no need to store relations between different data models, and redirections should be processed as quickly as possible
+- I use Go with Redis and Base 62 encoding.
 ## Overview
 Generating unique URL using randomization and Base62 encoding
 ### Data model information
@@ -72,7 +66,26 @@ Generating unique URL using randomization and Base62 encoding
 - Original string 
 - Expiration date 
 - Visits integer
-### We will have 3 endpoints: 
+### Endpoints: 
 - Create a new short link 
 - Redirect to the origin URL on passing a short link 
 - Get general information about the short link
+
+### Insight
+source: `https://www.example.co.uk:443/blog/article/search?docid=720&hl=en#dayone`
+
+Destination: `http://localhost:8080/ZNkw23qpiss`
+
+Request:
+```bash
+curl -L -X POST 'localhost:8080/encode' \
+-H 'Content-Type: application/json' \
+--data-raw '{
+    "url": "https://www.example.co.uk:443/blog/article/search?docid=720&hl=en#dayone",
+    "expires": "2022-10-04 17:18:00"
+}'
+```
+Response:
+```shell
+{"success":true,"shortUrl":"http://localhost:8080/ZNkw23qpiss"}
+```
