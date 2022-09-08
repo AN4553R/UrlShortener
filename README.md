@@ -56,3 +56,5 @@ Response:
 ```shell
 {"success":true,"shortUrl":"http://localhost:8080/ZNkw23qpiss"}
 ```
+## Load testing
+This is just service testing results on a local machine
