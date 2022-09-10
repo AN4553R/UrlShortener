@@ -31,3 +31,16 @@ Let’s assume that each record in the database - approximately 1000 bytes. [The
 >- We need to store several million records
 >- Each record is small 
 >- The service is very read-heavy
+
+Here is a formula for that: Thread Pool Size = RPS * max_response_time / 1000
+
+
+
+Target redirect request per second  = 10 RPS
+
+Maximum response time is 109MS
+
+Thread pool size = 10 * 109 / 1000 = 1.09 
+
+For simplicity let’s round the result up to an integer number. According to this formula 2 is the calculated Target Concurrency for our demo test. Let’s prove it!
+
