@@ -2,12 +2,13 @@ package redis
 
 import (
 	"fmt"
-	"github.com/gomodule/redigo/redis"
 	"math/rand"
 	"strconv"
 	"time"
 	"urlShortener/base62"
 	"urlShortener/storage"
+
+	"github.com/gomodule/redigo/redis"
 )
 
 type RedisClientPool struct{ pool *redis.Pool }
@@ -83,17 +84,6 @@ func (r *RedisClientPool) Load(code string) (string, error) {
 	}
 
 	return urlString, nil
-}
-
-func (r *RedisClientPool) isAvailable(id uint64) bool {
-	conn := r.pool.Get()
-	defer conn.Close()
-
-	exists, err := redis.Bool(conn.Do("EXISTS", "Shortener:"+strconv.FormatUint(id, 10)))
-	if err != nil {
-		return false
-	}
-	return !exists
 }
 
 func (r *RedisClientPool) LoadInfo(code string) (*storage.Item, error) {
