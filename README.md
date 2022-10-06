@@ -1,6 +1,7 @@
 # URL Shortening Service (URLSS)
-> A super fast URL shortener service.
+> URL shortener service.
 
+YT: https://youtu.be/7xmPDmUb5qI
 ## Motivation
 This app takes a long URL and shrinks it down to fewer characters.
 ### Benefits
