@@ -64,4 +64,7 @@ For simplicity let’s round the result up to an integer number. According to th
 > Response times over time
 
 
-
+### All these testing using Jmeter on local machine 
+#### Specs:
+- Memory 12.0 GiB RAM
+- Processor Intel® Core™ i5-2450M CPU @ 2.50GHz × 4
