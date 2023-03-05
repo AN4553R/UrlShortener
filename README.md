@@ -1,7 +1,6 @@
 # URL Shortening Service (URLSS)
 > URL shortener service.
 
-YT: https://youtu.be/7xmPDmUb5qI
 ## Motivation
 This app takes a long URL and shrinks it down to fewer characters.
 ### Benefits
@@ -22,7 +21,7 @@ Aside from just being more pleasing to the eye, shortened URLs can have the foll
   - You have no idea where a link is sending you when it’s in a shortened form. This can be helped by using a custom domain, but even then, it could seem suspicious.
 - Unreliable service: 
   - links become defunct after timeout
->[System Design](./SysDesign.md)
+>[System Design Doc](./SysDesign.md)
 
 ## Technology stack 
 - This service should store relatively small amounts of data, no need to store relations between different data models, and redirections should be processed as quickly as possible
